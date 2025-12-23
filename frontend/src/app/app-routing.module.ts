@@ -6,12 +6,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { ItineraryListComponent } from './components/itinerary-list/itinerary-list.component';
 import { ItineraryCreateComponent } from './components/itinerary-create/itinerary-create.component';
 
+import { LandingComponent } from './components/landing/landing.component';
+
 const routes: Routes = [
+  { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'itineraries', component: ItineraryListComponent },
   { path: 'itineraries/new', component: ItineraryCreateComponent },
-  { path: '', redirectTo: '/itineraries', pathMatch: 'full' }
 ];
 
 @NgModule({

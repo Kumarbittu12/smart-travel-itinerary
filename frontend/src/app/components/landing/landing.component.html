@@ -1,0 +1,23 @@
+<div class="landing-container">
+    <div class="hero-section">
+        <div class="content-wrapper">
+            <h1 class="main-title">Smart Travel Itinerary Planner</h1>
+            <p class="subtitle">Plan your perfect trip with AI-driven personalized itineraries.</p>
+
+            <div class="action-container">
+                <button class="get-started-btn" *ngIf="!showAuthOptions" (click)="onGetStarted()">
+                    GET STARTED
+                </button>
+
+                <div class="auth-options" *ngIf="showAuthOptions">
+                    <button class="auth-btn" (click)="navigateToLogin()">
+                        LOGIN
+                    </button>
+                    <button class="auth-btn" (click)="navigateToRegister()">
+                        REGISTER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

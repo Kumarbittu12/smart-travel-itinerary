@@ -17,11 +17,13 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ItineraryListComponent } from './components/itinerary-list/itinerary-list.component';
 import { ItineraryCreateComponent } from './components/itinerary-create/itinerary-create.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    LandingComponent,
     LoginComponent,
     RegisterComponent,
     ItineraryListComponent,
