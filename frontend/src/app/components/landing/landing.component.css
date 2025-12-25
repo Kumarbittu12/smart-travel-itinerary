@@ -1,136 +1,427 @@
-.landing-container {
-    height: 100vh;
+.landing-page {
+    min-height: 100vh;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../../../assets/travel_background.png');
+    background-image: url('/assets/public/image.png');
+    /* High quality travel background */
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    font-family: 'Roboto', sans-serif;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
     position: relative;
+    padding-top: 80px;
+    /* Space for navbar */
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
-.landing-container::before {
+.landing-page::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    /* Overlay to make text readable */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 100%);
     z-index: 1;
 }
 
+/* Hero Section */
 .hero-section {
     position: relative;
     z-index: 2;
-    text-align: center;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    width: 90%;
-    color: white;
-    animation: fadeIn 1s ease-out;
-}
-
-.main-title {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    letter-spacing: -1px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
-    line-height: 1.6;
-    font-weight: 300;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.action-container {
-    min-height: 80px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Align to left as per design usually */
     align-items: center;
-    flex-direction: column;
+    padding: 4rem 8%;
+    min-height: 80vh;
 }
 
-.get-started-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 300;
-    padding: 1rem 3rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border-radius: 50px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.get-started-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-    letter-spacing: 3px;
-    border-color: white;
-}
-
-.auth-options {
+.hero-content {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 2rem;
-    animation: slideUp 0.3s ease-out;
 }
 
-.auth-btn {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    font-size: 1.2rem;
-    padding: 0.8rem 2.5rem;
-    border-radius: 8px;
-    cursor: pointer;
+/* Booking Card */
+.booking-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 2.5rem;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.booking-title {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.highlight {
+    color: #00b4d8;
+    /* Ocean blue */
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 180, 216, 0.2);
+    z-index: -1;
+}
+
+.input-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.select-wrapper,
+input[type="date"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #f8f9fa;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
+    outline: none;
 }
 
-.auth-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+.select-wrapper select {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    outline: none;
+    appearance: none;
+    /* Custom arrow would be nice but keeping simple */
+}
+
+.input-group:focus-within .select-wrapper,
+.input-group:focus-within input {
+    border-color: #00b4d8;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+
+.swap-icon {
+    font-size: 1.2rem;
+    color: #00b4d8;
+    background: #e0f7fa;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+/* Counters */
+.counters {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 12px;
+    justify-content: space-between;
+}
+
+.counter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.counter-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.counter-controls button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.counter-controls button:hover {
+    background: #00b4d8;
+    color: white;
+    border-color: #00b4d8;
+}
+
+.search-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #00b4d8;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 180, 216, 0.4);
+    background: #0096c7;
 }
 
-@keyframes fadeIn {
+/* Deals Section */
+.deals-section {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 8%;
+    background: white;
+    border-radius: 40px 40px 0 0;
+    margin-top: -40px;
+    /* Slight overlap with hero */
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+
+.search-bar {
+    display: flex;
+    gap: 0.5rem;
+    background: #f1f3f5;
+    padding: 0.4rem;
+    border-radius: 50px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    padding: 0.5rem 1rem;
+    outline: none;
+    font-size: 0.9rem;
+    width: 200px;
+}
+
+.search-bar button {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.filters button {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.filters button.active,
+.filters button:hover {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+}
+
+/* Deals Grid */
+.deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.deal-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.deal-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.discount-badge {
+    background: #ff4757;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.favorite-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.favorite-btn:hover {
+    background: white;
+}
+
+.card-details {
+    padding: 1.5rem;
+}
+
+.card-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: #1a1a1a;
+}
+
+.meta-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rating {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .hero-section {
+        padding: 6rem 1.5rem 2rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .booking-card {
+        margin: 0 auto;
+    }
+
+    .hero-content {
+        flex-direction: column;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+}
+
+@keyframes slideInLeft {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateX(-50px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 }

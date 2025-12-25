@@ -1,7 +1,25 @@
-<mat-toolbar color="primary">
-  <span>Smart Travel Itinerary</span>
-  <span class="spacer"></span>
-  <button mat-button routerLink="/itineraries">Itineraries</button>
-  <button mat-button routerLink="/login">Login</button>
-  <button mat-button routerLink="/register">Register</button>
-</mat-toolbar>
+<header class="navbar">
+  <div class="logo-container">
+    <span class="brand-logo">TripMate</span>
+  </div>
+
+  <nav class="nav-links">
+    <a href="#" class="nav-item">Holiday Packages</a>
+    <a href="#" class="nav-item">Top Deals</a>
+    <a href="#" class="nav-item">Help</a>
+    <a href="#" class="nav-item">Wishlist</a>
+  </nav>
+
+  <div class="auth-buttons">
+    <button class="btn-text" routerLink="/register">Register</button>
+    <button class="btn-primary" routerLink="/login">Login</button>
+    <div class="lang-selector">
+      <span>EN</span>
+      <span class="dropdown-arrow">▼</span>
+    </div>
+  </div>
+
+  <button class="mobile-menu-btn">
+    <span class="hamburger-icon">☰</span>
+  </button>
+</header>

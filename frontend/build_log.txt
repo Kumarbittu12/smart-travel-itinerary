@@ -1,0 +1,15 @@
+
+> frontend@0.0.0 build
+> ng build
+
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+✔ Browser application bundle generation complete.
+
+Warning: C:/Users/bittu/OneDrive/Desktop/smart-travel-itinerary-planner/smart-travel-itinerary-planner/frontend/src/app/components/landing/landing.component.css exceeded maximum budget. Budget 2.00 kB was not met by 3.43 kB with a total of 5.43 kB.
+
+
+
+Error: C:/Users/bittu/OneDrive/Desktop/smart-travel-itinerary-planner/smart-travel-itinerary-planner/frontend/src/app/components/landing/landing.component.css exceeded maximum budget. Budget 4.00 kB was not met by 1.43 kB with a total of 5.43 kB.
+
+

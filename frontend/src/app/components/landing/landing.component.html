@@ -1,23 +1,108 @@
-<div class="landing-container">
-    <div class="hero-section">
-        <div class="content-wrapper">
-            <h1 class="main-title">Smart Travel Itinerary Planner</h1>
-            <p class="subtitle">Plan your perfect trip with AI-driven personalized itineraries.</p>
+<div class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-image-overlay"></div>
+        <div class="hero-content">
+            <!-- Left Side: Booking Card -->
+            <div class="booking-card">
+                <h1 class="booking-title">What Is Your <br> <span class="highlight">Destination?</span></h1>
 
-            <div class="action-container">
-                <button class="get-started-btn" *ngIf="!showAuthOptions" (click)="onGetStarted()">
-                    GET STARTED
-                </button>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>FROM</label>
+                        <div class="select-wrapper">
+                            <select [(ngModel)]="fromCity">
+                                <option>London</option>
+                                <option>New York</option>
+                            </select>
+                        </div>
+                    </div>
+                    <span class="swap-icon">⇄</span>
+                    <div class="input-group">
+                        <label>TO</label>
+                        <div class="select-wrapper">
+                            <select [(ngModel)]="toCity">
+                                <option>Paris</option>
+                                <option>Tokyo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="auth-options" *ngIf="showAuthOptions">
-                    <button class="auth-btn" (click)="navigateToLogin()">
-                        LOGIN
-                    </button>
-                    <button class="auth-btn" (click)="navigateToRegister()">
-                        REGISTER
-                    </button>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>DEPARTURE</label>
+                        <input type="date" value="2024-03-22">
+                    </div>
+                    <span class="swap-icon">⇄</span>
+                    <div class="input-group">
+                        <label>RETURN</label>
+                        <input type="date" value="2024-04-02">
+                    </div>
+                </div>
+
+                <div class="input-row counters">
+                    <div class="counter-group">
+                        <label>GUESTS</label>
+                        <div class="counter-controls">
+                            <button (click)="onCounterChange('guests', 'remove')">−</button>
+                            <span>{{ guests }}</span>
+                            <button (click)="onCounterChange('guests', 'add')">+</button>
+                        </div>
+                    </div>
+                    <div class="counter-group">
+                        <label>ROOMS</label>
+                        <div class="counter-controls">
+                            <button (click)="onCounterChange('rooms', 'remove')">−</button>
+                            <span>{{ rooms }}</span>
+                            <button (click)="onCounterChange('rooms', 'add')">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="search-btn">Get your deal now</button>
+            </div>
+
+            <!-- Right Side is visually handled by background image positioning in CSS -->
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="deals-section">
+        <div class="section-header">
+            <h2>Best holiday deals</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search your next city">
+                <button>Search</button>
+            </div>
+        </div>
+
+        <div class="filters">
+            <button *ngFor="let filter of filters" [class.active]="selectedFilter === filter"
+                (click)="onFilterSelect(filter)">
+                {{ filter }}
+            </button>
+        </div>
+
+        <div class="deals-grid">
+            <div class="deal-card" *ngFor="let deal of deals">
+                <div class="card-image" [style.backgroundImage]="'url(' + deal.image + ')'">
+                    <span class="discount-badge">{{ deal.discount }}</span>
+                    <button class="favorite-btn">♡</button>
+                </div>
+                <div class="card-details">
+                    <h3>{{ deal.title }}</h3>
+                    <div class="meta-info">
+                        <span class="duration">📅 {{ deal.description }}</span>
+                    </div>
+                    <div class="meta-info">
+                        <span class="promo">🎁 Return international flights*</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="rating">⭐ {{ deal.rating }}</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
