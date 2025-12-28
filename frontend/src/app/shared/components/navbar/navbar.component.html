@@ -1,0 +1,42 @@
+<mat-toolbar class="navbar" [class.transparent-navbar]="transparent">
+    <div class="navbar-content">
+        <!-- Logo -->
+        <div class="logo" routerLink="/">
+            <div class="logo-icon">
+                <mat-icon>flight_takeoff</mat-icon>
+            </div>
+            <span class="logo-text">GHAFUR</span>
+        </div>
+
+        <!-- Links (Desktop) -->
+        <div class="nav-links">
+            <a routerLink="/" fragment="home" (click)="scrollToTop()">Home</a>
+            <a routerLink="/itineraries">Service</a>
+            <a routerLink="/itineraries">Gallery</a>
+            <a routerLink="/itineraries">Deals</a>
+            <a routerLink="/itineraries">Package</a>
+            <a routerLink="/itineraries">Blog</a>
+            <a routerLink="/itineraries">Contact</a>
+        </div>
+
+        <!-- Right Side: Search & Booking & User -->
+        <div class="nav-actions">
+            <button mat-icon-button class="search-icon-btn">
+                <mat-icon>search</mat-icon>
+            </button>
+
+            <button mat-flat-button color="warn" class="booking-btn">Booking Now</button>
+
+            <!-- User Menu (Keep existing functionality) -->
+            <div class="user-section" *ngIf="user$ | async as user">
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="user-menu-btn">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/itineraries">My Trips</button>
+                    <button mat-menu-item (click)="logout()">Logout</button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>

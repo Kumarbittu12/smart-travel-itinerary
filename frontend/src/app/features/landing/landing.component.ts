@@ -10,6 +10,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
@@ -26,6 +27,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
         MatIconModule,
         MatSelectModule,
         NavbarComponent,
+
         FooterComponent
     ],
     template: `
@@ -47,6 +49,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
     <!-- Transparent Navbar with Background for hero -->
     <div class="hero-wrapper">
          <app-navbar [transparent]="true"></app-navbar>
+
          
          <!-- Hero Section -->
          <div class="hero-section" [style.background-image]="currentHeroImage">
@@ -245,7 +248,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
       background-size: cover;
       background-position: center;
       transition: background-image 0.1s ease-in-out; 
-      height: 97vh;
+      height: 95vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -498,19 +501,19 @@ export class LandingPageComponent {
     }
 
     destinations = [
-        {name:'Rameshavarm',image:'https://www.justahotels.com/wp-content/uploads/2024/02/Ramanathaswamy-Temple.jpg'},
-        {name: 'KodaiKanal', image:'https://tourismtn.com/wp-content/uploads/2020/12/Chettiar-Park-Old-Banner.jpg'},
-        {name: 'KodaiKanal', image:'https://www.aladdinholidays.com/wp-content/uploads/2024/09/kodaikanal-honeymoon.jpg'},
-        {name: 'MinkashiTemple',image:'https://i.pinimg.com/736x/02/25/36/022536a2865b6163d19adafb45f1a104.jpg'},
-        {name: 'KanyaKumari', image:'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/cf/09/thiruvalluvar-statue.jpg?w=1200&h=-1&s=1'},
+        { name: 'Rameshavarm', image: 'https://www.justahotels.com/wp-content/uploads/2024/02/Ramanathaswamy-Temple.jpg' },
+        { name: 'KodaiKanal', image: 'https://tourismtn.com/wp-content/uploads/2020/12/Chettiar-Park-Old-Banner.jpg' },
+        { name: 'KodaiKanal', image: 'https://www.aladdinholidays.com/wp-content/uploads/2024/09/kodaikanal-honeymoon.jpg' },
+        { name: 'MinkashiTemple', image: 'https://i.pinimg.com/736x/02/25/36/022536a2865b6163d19adafb45f1a104.jpg' },
+        { name: 'KanyaKumari', image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/bb/cf/09/thiruvalluvar-statue.jpg?w=1200&h=-1&s=1' },
         { name: 'Kyoto, Japan', image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500' },
         { name: 'Singapore', image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=500' },
         { name: 'Canada', image: 'https://images.unsplash.com/photo-1499678329028-101435549a4e?w=500' },
         { name: 'Maldives', image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=500' },
-          { name: 'Maldives', image: 'https://static.tripzilla.in/media/49215/conversions/ad2454cd-8275-4e33-9037-e009cc7b9392-w1024.webp' },
-          {name: 'Valmikinagr', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG04fRNATRTfn-gIF34lsgdJ_pnBFH17s60w&s'},
-        {name: 'Nepal', image:'https://nepaltreksandvoyage.wordpress.com/wp-content/uploads/2014/11/annapurna_trail_an_hanging_bridge_on_kali_gandaki_river.jpg'},
-        
+        { name: 'Maldives', image: 'https://static.tripzilla.in/media/49215/conversions/ad2454cd-8275-4e33-9037-e009cc7b9392-w1024.webp' },
+        { name: 'Valmikinagr', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG04fRNATRTfn-gIF34lsgdJ_pnBFH17s60w&s' },
+        { name: 'Nepal', image: 'https://nepaltreksandvoyage.wordpress.com/wp-content/uploads/2014/11/annapurna_trail_an_hanging_bridge_on_kali_gandaki_river.jpg' },
+
 
     ];
 }

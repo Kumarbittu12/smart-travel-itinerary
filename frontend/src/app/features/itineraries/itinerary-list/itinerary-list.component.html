@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="header">
+        <h1>My Travel Itineraries</h1>
+        <button mat-raised-button color="primary" routerLink="/itineraries/new">
+            <mat-icon>add</mat-icon>
+            Create New Trip
+        </button>
+    </div>
+
+    <div class="filters">
+        <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search destinations</mat-label>
+            <input matInput [formControl]="searchControl" placeholder="Where do you want to go?">
+            <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <app-loader [loading]="loading" message="Loading your itineraries..."></app-loader>
+
+    <div class="itinerary-grid" *ngIf="!loading && (filteredItineraries$ | async) as itineraries">
+        <app-empty-state *ngIf="itineraries.length === 0" icon="explore" title="No itineraries yet"
+            message="Start planning your next adventure by creating your first itinerary" actionText="Create Itinerary"
+            actionRoute="/itineraries/new">
+        </app-empty-state>
+
+        <mat-card *ngFor="let itinerary of itineraries" class="itinerary-card">
+            <div class="card-image" [style.background-image]="getDestinationImage(itinerary)">
+                <div class="card-overlay">
+                    <h2>{{ itinerary.destination }}</h2>
+                </div>
+            </div>
+
+            <mat-card-content>
+                <div class="dates">
+                    <mat-icon>event</mat-icon>
+                    <span>{{ formatDate(itinerary.startDate) }} - {{ formatDate(itinerary.endDate) }}</span>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-item">
+                        <mat-icon>calendar_today</mat-icon>
+                        <span>{{ getDuration(itinerary) }} days</span>
+                    </div>
+                    <div class="info-item">
+                        <mat-icon>account_balance_wallet</mat-icon>
+                        <span>\${{ itinerary.totalEstimatedCost }}</span>
+                    </div>
+                </div>
+
+                <div class="preferences" *ngIf="itinerary.preferences.length > 0">
+                    <mat-chip *ngFor="let pref of itinerary.preferences.slice(0, 3)">
+                        {{ pref }}
+                    </mat-chip>
+                </div>
+
+                <div class="budget-status">
+                    <div class="budget-bar">
+                        <div class="budget-fill" [style.width.%]="getBudgetPercentage(itinerary)"
+                            [class.over-budget]="itinerary.totalEstimatedCost > itinerary.budget">
+                        </div>
+                    </div>
+                    <span class="budget-text">
+                        \${{ itinerary.totalEstimatedCost }} / \${{ itinerary.budget }}
+                    </span>
+                </div>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button mat-button [routerLink]="['/itineraries', itinerary.id]">
+                    <mat-icon>visibility</mat-icon>
+                    View Details
+                </button>
+                <button mat-button [routerLink]="['/itineraries', itinerary.id, 'edit']">
+                    <mat-icon>edit</mat-icon>
+                    Edit
+                </button>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="deleteItinerary(itinerary.id)">
+                        <mat-icon color="warn">delete</mat-icon>
+                        Delete
+                    </button>
+                </mat-menu>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

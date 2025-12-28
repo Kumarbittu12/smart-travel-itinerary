@@ -1,0 +1,97 @@
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 0px;
+}
+
+mat-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+}
+
+mat-card-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    color: #667eea;
+}
+
+h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+mat-card-subtitle {
+    text-align: center;
+    margin-top: 5px;
+}
+
+mat-card-content {
+    padding: 16px 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.submit-btn {
+    height: 48px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+mat-spinner {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+}
+
+.link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+mat-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

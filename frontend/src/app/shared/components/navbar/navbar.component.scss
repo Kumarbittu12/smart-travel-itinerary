@@ -1,0 +1,154 @@
+.navbar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 1200px;
+    z-index: 1000;
+    box-sizing: border-box;
+
+    /* Glassmorphism */
+    background: rgba(44, 30, 74, 0.6);
+    /* Semi-transparent deep indigo */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    /* Brighter/Visible border */
+
+    color: white;
+    height: 70px;
+    /* Slightly smaller for floating look */
+    padding: 0 25px;
+
+    /* Pill Shape */
+    border-radius: 50px;
+
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.navbar-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.logo-icon {
+    background: linear-gradient(45deg, #ff4d4d, #a400ff);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Links */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.3s;
+    opacity: 0.9;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #ff4d4d;
+    /* Coral highlight */
+    opacity: 1;
+}
+
+/* Actions */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-icon-btn {
+    background: #ff4d4d;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon-btn mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.booking-btn {
+    background-color: #ff4d4d !important;
+    color: white !important;
+    font-weight: 700;
+    padding: 0 25px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.login-link {
+    color: white;
+    font-weight: 600;
+}
+
+/* Transparent Mode overrides */
+.transparent-navbar {
+    background-color: transparent;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.transparent-navbar .navbar {
+    background: transparent;
+    box-shadow: none;
+}
+
+@media (max-width: 900px) {
+    .nav-links {
+        display: none;
+        /* Mobile menu todo */
+    }
+}

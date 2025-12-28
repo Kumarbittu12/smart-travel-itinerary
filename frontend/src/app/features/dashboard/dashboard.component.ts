@@ -9,7 +9,7 @@ import { ItineraryService } from '../../core/services/itinerary.service';
 import { StorageService } from '../../core/services/storage.service';
 import { Itinerary } from '../../core/models/itinerary.model';
 import { User } from '../../core/models/user.model';
-import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+
 
 interface DashboardStats {
   totalUsers: number;
@@ -27,10 +27,10 @@ interface DashboardStats {
     MatIconModule,
     MatTableModule,
     MatChipsModule,
-    NavbarComponent
+
   ],
   template: `
-    <app-navbar></app-navbar>
+
     
     <div class="container">
       <div class="header">
@@ -225,7 +225,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private itineraryService: ItineraryService,
     private storage: StorageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadDashboardData();
