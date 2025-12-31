@@ -1,0 +1,27 @@
+<div *ngIf="itinerary" class="view-container">
+  <button class="back-btn" (click)="goBack()">← Back</button>
+
+  <h1>{{ itinerary.title }}</h1>
+  <p>${{ itinerary.price }} | {{ itinerary.days }} days</p>
+
+  <img
+    *ngIf="itinerary.media.length"
+    [src]="itinerary.media[0]"
+    alt="{{ itinerary.title }}"
+    class="trip-image"
+  />
+
+  <h3>Schedule:</h3>
+  <ul>
+    <li *ngFor="let day of itinerary.schedule">{{ day }}</li>
+  </ul>
+
+  <h3>Activities:</h3>
+  <mat-chip *ngFor="let act of itinerary.activities">{{ act }}</mat-chip>
+
+  <p *ngIf="itinerary.notes"><strong>Notes:</strong> {{ itinerary.notes }}</p>
+</div>
+
+<div *ngIf="!itinerary">
+  <p>Loading trip details...</p>
+</div>

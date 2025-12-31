@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +31,7 @@ import { EmptyStateComponent } from '../../../shared/components/empty-state/empt
     MatChipsModule,
     MatMenuModule,
     MatSnackBarModule,
+    FormsModule,
 
     LoaderComponent,
     EmptyStateComponent
@@ -46,7 +47,8 @@ export class ItineraryListComponent implements OnInit {
 
   constructor(
     private itineraryService: ItineraryService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -123,4 +125,75 @@ export class ItineraryListComponent implements OnInit {
     const safeDest = encodeURIComponent(itinerary.destination);
     return `url(https://loremflickr.com/800/600/${safeDest},travel/all)`;
   }
+
+  destination = '';
+  budget!: number;
+
+  showDropdown = false;
+  showPopup = false;
+
+  startDate = '';
+  endDate = '';
+  members = 1;
+
+places = ['Goa', 'Kerala', 'Paris', 'Tokyo', 'New York', 'Dubai', 'Maldives', 'Bali', 'London', 'Rome', 'Barcelona', 'Sydney', 'Singapore', 'Kodaikanal', 'Manali'];
+
+  filteredPlaces: string[] = [...this.places];
+
+  
+  filterPlaces() {
+    this.filteredPlaces = this.places.filter(place =>
+      place.toLowerCase().includes(this.destination.toLowerCase())
+    );
+  }
+  selectPlace(place: string) {
+    this.destination = place;
+    this.showDropdown = false;
+  }
+  errorMessage: string = '';
+
+
+details1page() {
+  if (!this.destination && !this.budget) {
+    this.errorMessage = '*Please enter destination and budget';
+    return;
+  }
+
+  if (!this.destination) {
+    this.errorMessage = '*Please select a destination';
+    return;
+  }
+
+  if (!this.budget) {
+    this.errorMessage = '*Please enter your budget';
+    return;
+  }
+
+  // ✅ clear error if valid
+  this.errorMessage = '';
+
+  this.router.navigate(['/itinerary-details-page'], {
+    queryParams: {
+      destination: this.destination,
+      budget: this.budget
+    }
+  });
+}
+
+
+
+  // destinationError = false;
+  // budgetError = false;
+
+  // ✅ Open popup with validation
+//   detailspage() {
+//   this.destinationError = !this.destination;
+//   this.budgetError = !this.budget;
+
+//   if (this.destinationError || this.budgetError) return;
+
+//   this.showPopup = true;
+// }
+
+
 }

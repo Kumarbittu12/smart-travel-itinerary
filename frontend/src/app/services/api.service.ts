@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
     providedIn: 'root'
 })
 export class ApiService {
-    private baseURL = 'http://localhost:5000'; // Adjust if backend port differs
+    private baseURL = 'http://localhost:5000'; // backend URL
 
     constructor(private cookieService: CookieService) {
         axios.interceptors.request.use(config => {
@@ -32,5 +32,22 @@ export class ApiService {
 
     delete(endpoint: string) {
         return axios.delete(`${this.baseURL}/${endpoint}`);
+    }
+
+    // ----------------- MyTrip API -----------------
+
+    // Add a trip to user's MyTrip
+    addToMyTrip(trip: any) {
+        return this.post('mytrips', trip);
+    }
+
+    // Get all trips in MyTrip
+    getMyTrips() {
+        return this.get('mytrips');
+    }
+
+    // Remove a trip from MyTrip
+    removeFromMyTrip(tripId: string) {
+        return this.delete(`mytrips/${tripId}`);
     }
 }

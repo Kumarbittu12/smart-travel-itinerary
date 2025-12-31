@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
 import { UserRole } from './core/models/user.model';
+import { ItineraryDetailsPageComponent } from './features/itineraries/itinerary-details-page/itinerary-details-page.component';
+import { ItineraryViewPageComponent } from './features/itineraries/itinerary-view-page/itinerary-view-page.component';
 
 export const routes: Routes = [
   {
@@ -46,7 +48,21 @@ export const routes: Routes = [
         path: ':id/edit',
         loadComponent: () => import('./features/itineraries/itinerary-edit/itinerary-edit.component')
           .then(m => m.ItineraryEditComponent)
-      }
+      },
+      {
+  path: 'search',
+  loadComponent: () =>
+    import('./features/itineraries/itinerary-details-page/itinerary-details-page.component')
+      .then(m => m.ItineraryDetailsPageComponent)
+},
+
+     {
+  path: 'view/:id',
+  loadComponent: () =>
+    import('./features/itineraries/itinerary-view-page/itinerary-view-page.component')
+      .then(m => m.ItineraryViewPageComponent)
+}
+
     ]
   },
   {
@@ -55,5 +71,9 @@ export const routes: Routes = [
     loadComponent: () => import('./features/dashboard/dashboard.component')
       .then(m => m.DashboardComponent)
   },
-  { path: '**', redirectTo: '/itineraries' }
+   {path:'itinerary-details-page',component:ItineraryDetailsPageComponent},
+  // {path:'itinerary-view-page',component:ItineraryViewPageComponent},
+  
+  { path: '**', redirectTo: '/itineraries' },
+  
 ];

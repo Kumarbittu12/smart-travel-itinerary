@@ -1,11 +1,59 @@
 <div class="container">
     <div class="header">
         <h1>My Travel Itineraries</h1>
-        <button mat-raised-button color="primary" routerLink="/itineraries/new">
+        <button class="btn"  mat-raised-button color="primary" routerLink="/itineraries/new">
             <mat-icon>add</mat-icon>
             Create New Trip
         </button>
     </div>
+    <!-- VIDEO BOX -->
+  <div class="box">
+    <video class="bgvideo" autoplay muted loop playsinline>
+      <source src="assets/video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- GLASS SEARCH BOX -->
+  <div class="box1">
+    <div class="search-group">
+
+ <!-- DESTINATION DROPDOWN -->
+<div class="dropdown">
+  <input
+    type="text"
+    placeholder="Enter destination"
+    [(ngModel)]="destination"
+    (input)=" filterPlaces()"
+    (focus)="showDropdown = true"
+  />
+
+  <ul class="dropdown-list" *ngIf="showDropdown">
+    <li
+      *ngFor="let place of filteredPlaces"
+      (click)="selectPlace(place)"
+    >
+      {{ place }}
+    </li>
+  </ul>
+</div>
+
+<!-- BUDGET -->
+<input
+  class="budget"
+  type="number"
+  placeholder="Budget"
+  [(ngModel)]="budget"
+/>
+
+<!-- SEARCH BUTTON -->
+<button class="search-btn" (click)="details1page()"><span>Search</span></button>
+<p class="error-msg" *ngIf="errorMessage">
+  {{ errorMessage }}
+</p>
+
+
+    </div>
+  </div>
 
     <div class="filters">
         <mat-form-field appearance="outline" class="search-field">
@@ -16,6 +64,7 @@
     </div>
 
     <app-loader [loading]="loading" message="Loading your itineraries..."></app-loader>
+    <h1 class="mytrip">MyTrip</h1>
 
     <div class="itinerary-grid" *ngIf="!loading && (filteredItineraries$ | async) as itineraries">
         <app-empty-state *ngIf="itineraries.length === 0" icon="explore" title="No itineraries yet"
@@ -66,10 +115,10 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button mat-button [routerLink]="['/itineraries', itinerary.id]">
-                    <mat-icon>visibility</mat-icon>
-                    View Details
-                </button>
+                <button mat-button [routerLink]="['/itineraries/view', itinerary.id]">
+  <mat-icon>visibility</mat-icon>
+  View Details
+</button>
                 <button mat-button [routerLink]="['/itineraries', itinerary.id, 'edit']">
                     <mat-icon>edit</mat-icon>
                     Edit
@@ -86,4 +135,15 @@
             </mat-card-actions>
         </mat-card>
     </div>
+    <!-- Add this at the very bottom of your container div -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 wiseTravel. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
 </div>

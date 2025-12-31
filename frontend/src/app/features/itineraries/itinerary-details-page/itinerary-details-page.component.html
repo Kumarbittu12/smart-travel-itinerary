@@ -1,0 +1,60 @@
+<div class="container">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">wiseTravel</div>
+    <ul class="nav-links">
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/">MyTrip</a></li>
+      <li><a routerLink="/itineraries/new">CreateTrip</a></li>
+    </ul>
+  </nav>
+
+  <button class="back-btn" (click)="goBack()">← Back</button>
+
+  <h1 *ngIf="destination && budget" class="title">
+    Trips for "{{ destination }}" under ${{ budget }}
+  </h1>
+
+  <!-- No trips found -->
+  <div *ngIf="filteredTrips.length === 0" class="no-trips">
+    <p>No trips found 😞</p>
+    <p>Try increasing your budget or choosing a different destination!</p>
+
+    <div class="budget-suggestions" *ngIf="suggestedBudgets.length">
+      <span *ngFor="let b of suggestedBudgets" class="suggestion" (click)="updateBudget(b)">
+        ${{ b }}
+      </span>
+    </div>
+  </div>
+
+  <div class="trip-grid">
+  <div *ngFor="let trip of filteredTrips" class="trip-card">
+    <!-- Use trip.image instead of Unsplash URL -->
+    <div class="trip-image" [style.backgroundImage]="'url(' + trip.image + ')'"></div>
+    
+    <div class="trip-info">
+      <h2>{{ trip.title }}</h2>
+      <p>Price: ${{ trip.price }}</p>
+      <p>Duration: {{ trip.days }} days</p>
+      <p>
+  <a [routerLink]="['/itineraries/view', trip.id]">
+    View details
+  </a>
+</p>
+
+    </div>
+  </div>
+</div>
+<!-- Add this at the very bottom of your container div -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 wiseTravel. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
+
+</div>
