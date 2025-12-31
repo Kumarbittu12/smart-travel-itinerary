@@ -70,9 +70,14 @@ export class ItineraryListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.itineraries$ = this.itineraryService.getAll();
+    // 1. Initial Fetch
+    this.itineraryService.getAll().subscribe({
+      next: () => this.loading = false,
+      error: () => this.loading = false
+    });
 
-    setTimeout(() => this.loading = false, 1000);
+    // 2. Listen to state changes (Subject)
+    this.itineraries$ = this.itineraryService.itineraries$;
 
     this.filteredItineraries$ = combineLatest([
       this.itineraries$,
