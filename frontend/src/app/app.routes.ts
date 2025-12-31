@@ -52,7 +52,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard, roleGuard(UserRole.ADMIN)],
-    loadComponent: () => import('./features/dashboard/dashboard.component')
+    loadComponent: () => import('./admin/dashboard.component')
       .then(m => m.DashboardComponent)
   },
   { path: '**', redirectTo: '/itineraries' }

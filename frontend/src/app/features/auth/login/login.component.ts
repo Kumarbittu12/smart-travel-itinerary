@@ -213,9 +213,11 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe({
         next: (authState) => {
           this.loading = false;
+          console.log('Login successful. User:', authState.user);
           this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
 
-          if (authState.user?.role === 'ADMIN') {
+          const role = authState.user?.role?.toUpperCase();
+          if (role === 'ADMIN') {
             this.router.navigate(['/dashboard']);
           } else {
             this.router.navigate(['/itineraries']);

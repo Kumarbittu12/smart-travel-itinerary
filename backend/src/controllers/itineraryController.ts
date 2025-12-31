@@ -110,8 +110,11 @@ export const getMyItineraries = async (req: Request, res: Response) => {
  * GET ALL ITINERARIES
  */
 export const getAllItineraries = async (_req: Request, res: Response) => {
-  const [rows] = await db.query("SELECT * FROM itineraries");
-  return res.status(200).json(rows);
+  const [rows]: any = await db.query("SELECT * FROM itineraries");
+  return res.status(200).json({
+    count: rows.length,
+    itineraries: rows
+  });
 };
 
 /**

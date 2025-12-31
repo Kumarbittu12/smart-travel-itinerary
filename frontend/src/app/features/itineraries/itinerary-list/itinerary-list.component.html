@@ -1,10 +1,27 @@
 <div class="container">
     <div class="header">
         <h1>My Travel Itineraries</h1>
-        <button mat-raised-button color="primary" routerLink="/itineraries/new">
-            <mat-icon>add</mat-icon>
-            Create New Trip
-        </button>
+        <div class="header-actions">
+            <button mat-raised-button color="primary" routerLink="/itineraries/new">
+                <mat-icon>add</mat-icon>
+                Create New Trip
+            </button>
+
+            <button mat-icon-button [matMenuTriggerFor]="profileMenu" class="profile-btn">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            <mat-menu #profileMenu="matMenu">
+                <div class="user-info" *ngIf="currentUserEmail"
+                    style="padding: 0 16px; margin-bottom: 8px; font-size: 14px; color: #666;">
+                    {{ currentUserEmail }}
+                </div>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    Logout
+                </button>
+            </mat-menu>
+        </div>
     </div>
 
     <div class="filters">

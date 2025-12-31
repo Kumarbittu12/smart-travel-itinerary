@@ -117,38 +117,75 @@
     height: 20px;
 }
 
-.booking-btn {
+/* Button Styles */
+.create-btn {
     background-color: #ff4d4d !important;
     color: white !important;
     font-weight: 700;
+}
+
+.create-btn.desktop-only {
     padding: 0 25px;
     height: 40px;
     border-radius: 4px;
 }
 
-.login-link {
-    color: white;
-    font-weight: 600;
+.create-btn.mobile-only {
+    width: 40px;
+    height: 40px;
 }
 
-/* Transparent Mode overrides */
-.transparent-navbar {
-    background-color: transparent;
-    box-shadow: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.transparent-navbar .navbar {
-    background: transparent;
-    box-shadow: none;
+/* Response Visibility */
+.mobile-only {
+    display: none !important;
 }
 
 @media (max-width: 900px) {
     .nav-links {
         display: none;
-        /* Mobile menu todo */
+    }
+}
+
+@media (max-width: 600px) {
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: inline-flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo-text {
+        font-size: 16px;
+        /* Even smaller logo text to ensure fit */
+    }
+
+    .navbar {
+        height: 60px;
+        /* Slightly shorter navbar */
+        padding: 0 10px;
+        /* Minimal padding */
+        top: 15px;
+        /* Closer to top */
+    }
+
+    .nav-actions {
+        gap: 8px;
+        /* Reduce gap between icon buttons */
+    }
+
+    .search-icon-btn,
+    .create-btn.mobile-only,
+    .user-menu-btn {
+        width: 35px;
+        height: 35px;
+        /* Smaller touch targets if needed, but 40 is better for touch. Keeping 35 to fit row */
+    }
+
+    .logo-icon {
+        width: 30px;
+        height: 30px;
     }
 }

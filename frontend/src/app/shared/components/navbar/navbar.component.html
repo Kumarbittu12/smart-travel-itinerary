@@ -5,7 +5,7 @@
             <div class="logo-icon">
                 <mat-icon>flight_takeoff</mat-icon>
             </div>
-            <span class="logo-text">GHAFUR</span>
+            <span class="logo-text">Smart Travel</span>
         </div>
 
         <!-- Links (Desktop) -->
@@ -25,7 +25,15 @@
                 <mat-icon>search</mat-icon>
             </button>
 
-            <button mat-flat-button color="warn" class="booking-btn">Booking Now</button>
+            <!-- Create Itinerary (Full on Desktop) -->
+            <button mat-flat-button color="warn" class="create-btn desktop-only" routerLink="/itineraries/new">
+                Create Itinerary
+            </button>
+
+            <!-- Create Itinerary (Icon on Mobile) -->
+            <button mat-mini-fab color="warn" class="create-btn mobile-only" routerLink="/itineraries/new">
+                <mat-icon>add</mat-icon>
+            </button>
 
             <!-- User Menu (Keep existing functionality) -->
             <div class="user-section" *ngIf="user$ | async as user">

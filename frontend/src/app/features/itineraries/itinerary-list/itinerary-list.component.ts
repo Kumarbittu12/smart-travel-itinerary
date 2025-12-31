@@ -8,11 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Observable, combineLatest } from 'rxjs';
 import { map, startWith, debounceTime } from 'rxjs/operators';
 import { ItineraryService } from '../../../core/services/itinerary.service';
 import { Itinerary } from '../../../core/models/itinerary.model';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 import { EmptyStateComponent } from '../../../shared/components/empty-state/empty-state.component';
@@ -30,6 +33,7 @@ import { EmptyStateComponent } from '../../../shared/components/empty-state/empt
     MatInputModule,
     MatChipsModule,
     MatMenuModule,
+    MatDividerModule,
     MatSnackBarModule,
 
     LoaderComponent,
@@ -44,10 +48,26 @@ export class ItineraryListComponent implements OnInit {
   searchControl = new FormControl('');
   loading = true;
 
+  currentUserEmail: string | undefined = '';
+
   constructor(
     private itineraryService: ItineraryService,
-    private snackBar: MatSnackBar
-  ) { }
+    private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    const user = this.authService.getCurrentUser();
+    // The backend stores email in 'contact_info' or 'email' depending on the model, 
+    // but auth.service.ts maps it to User interface which has 'email'.
+    // Let's check the User interface or just try access email.
+    // Looking at auth.service.ts register/loadAuthState, it seems 'email' is the property on the frontend User model.
+    this.currentUserEmail = user?.email;
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 
   ngOnInit(): void {
     this.itineraries$ = this.itineraryService.getAll();
@@ -121,6 +141,6 @@ export class ItineraryListComponent implements OnInit {
 
     // 3. Last resort dynamic image
     const safeDest = encodeURIComponent(itinerary.destination);
-    return `url(https://loremflickr.com/800/600/${safeDest},travel/all)`;
+    return `url(https://loremflickr.com/800/600/${safeDest}/all)`;
   }
 }

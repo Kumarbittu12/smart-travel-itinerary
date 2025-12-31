@@ -32,10 +32,11 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
     MatChipsModule,
     MatStepperModule,
     MatSnackBarModule,
-    NavbarComponent
+    MatSnackBarModule
   ],
   template: `
-    <app-navbar></app-navbar>
+
+
     
     <div class="container">
       <mat-card>
@@ -374,7 +375,7 @@ export class ItineraryCreateComponent implements OnInit {
     private itineraryService: ItineraryService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const today = new Date();
@@ -419,10 +420,10 @@ export class ItineraryCreateComponent implements OnInit {
 
   formatDate(date: Date): string {
     if (!date) return '';
-    return new Date(date).toLocaleDateString('en-US', { 
-      month: 'long', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return new Date(date).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
     });
   }
 }

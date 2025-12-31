@@ -20,7 +20,7 @@ export class ItineraryService {
 
   getAll(): Observable<Itinerary[]> {
     const user = this.auth.getCurrentUser();
-    const endpoint = user?.role === UserRole.ADMIN
+    const endpoint = user?.role?.toUpperCase() === UserRole.ADMIN
       ? 'api/itineraries/v1'
       : 'api/itineraries/v1/me';
 
@@ -59,10 +59,10 @@ export class ItineraryService {
     // 2. Add dynamic cover image if media is empty
     if (!itinerary.media || itinerary.media.length === 0) {
       // Use LoremFlickr for dynamic images based on destination
-      const safeDest = encodeURIComponent(itinerary.destination || 'travel');
-      // Adding a timestamp to break cache if needed, but for persistence we want a stable URL
-      // We will rely on destination-based variety from the service
-      itinerary.media = [`https://loremflickr.com/800/600/${safeDest},travel/all`];
+      // Use LoremFlickr for dynamic images based on destination
+      const safeDest = encodeURIComponent(itinerary.destination?.trim() || 'travel');
+      // Use just the destination to maximize relevance for specific cities
+      itinerary.media = [`https://loremflickr.com/800/600/${safeDest}/all`];
     }
 
     // 3. Calculate total cost for the new itinerary

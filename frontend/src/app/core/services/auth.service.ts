@@ -113,6 +113,6 @@ export class AuthService {
 
   hasRole(role: UserRole): boolean {
     const user = this.getCurrentUser();
-    return user?.role === role;
+    return user?.role?.toUpperCase() === role.toUpperCase();
   }
 }
