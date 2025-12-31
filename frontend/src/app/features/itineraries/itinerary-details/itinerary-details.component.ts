@@ -27,11 +27,11 @@ import { LoaderComponent } from '../../../shared/components/loader/loader.compon
     MatTabsModule,
     MatExpansionModule,
     MatSnackBarModule,
-    NavbarComponent,
     LoaderComponent
   ],
   template: `
-    <app-navbar></app-navbar>
+
+
     
     <div class="container">
       <app-loader [loading]="loading" message="Loading itinerary..."></app-loader>
@@ -588,7 +588,7 @@ export class ItineraryDetailsComponent implements OnInit {
     private itineraryService: ItineraryService,
     private snackBar: MatSnackBar,
     private clipboard: Clipboard
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -601,10 +601,10 @@ export class ItineraryDetailsComponent implements OnInit {
   }
 
   formatDate(date: Date): string {
-    return new Date(date).toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    return new Date(date).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
     });
   }
 

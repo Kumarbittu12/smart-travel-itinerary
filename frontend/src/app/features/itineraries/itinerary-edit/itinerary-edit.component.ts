@@ -31,11 +31,11 @@ import { LoaderComponent } from '../../../shared/components/loader/loader.compon
     MatSelectModule,
     MatChipsModule,
     MatSnackBarModule,
-    NavbarComponent,
     LoaderComponent
   ],
   template: `
-    <app-navbar></app-navbar>
+
+
     
     <div class="container">
       <app-loader [loading]="loading" message="Loading itinerary..."></app-loader>
@@ -217,11 +217,11 @@ export class ItineraryEditComponent implements OnInit {
     private router: Router,
     private itineraryService: ItineraryService,
     private snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.itineraryId = this.route.snapshot.paramMap.get('id')!;
-    
+
     this.itineraryService.getById(this.itineraryId).subscribe(itinerary => {
       if (itinerary) {
         this.editForm = this.fb.group({

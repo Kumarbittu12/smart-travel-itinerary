@@ -204,7 +204,22 @@ export class ItineraryService {
   // --- Data Mappers ---
 
   private mapToFrontend(data: any): Itinerary {
-    const dayPlans = typeof data.activities === 'string' ? JSON.parse(data.activities) : (data.activities || []);
+    const safeJsonParse = (input: any): any[] => {
+      if (!input) return [];
+      if (Array.isArray(input)) return input;
+      if (typeof input === 'string') {
+        try {
+          const parsed = JSON.parse(input);
+          return Array.isArray(parsed) ? parsed : [parsed];
+        } catch (e) {
+          // If parsing fails, assume it's a raw string (e.g. single URL)
+          return [input];
+        }
+      }
+      return [];
+    };
+
+    const dayPlans = safeJsonParse(data.activities);
     const totalEstimatedCost = dayPlans.reduce((sum: number, day: any) => sum + (day.totalCost || 0), 0);
 
     return {
@@ -218,7 +233,7 @@ export class ItineraryService {
       dayPlans: dayPlans,
       totalEstimatedCost: totalEstimatedCost,
       notes: data.notes,
-      media: typeof data.media_paths === 'string' ? JSON.parse(data.media_paths) : (data.media_paths || []),
+      media: safeJsonParse(data.media_paths),
       createdAt: new Date(data.created_at),
       updatedAt: new Date(data.updated_at || data.created_at),
       isPublic: !!data.is_public

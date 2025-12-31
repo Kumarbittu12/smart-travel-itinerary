@@ -32,3 +32,5 @@ router.get("/v1", getAllItineraries);
 router.get("/v1/:id", getItineraryById);
 
 export default router;
+
+

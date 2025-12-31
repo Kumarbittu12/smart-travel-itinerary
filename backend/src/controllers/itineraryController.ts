@@ -29,6 +29,11 @@ export const createItinerary = async (req: Request, res: Response) => {
       activitiesJson = JSON.stringify(activities);
     }
 
+    let mediaPathsJson = null;
+    if (Array.isArray(media_paths)) {
+      mediaPathsJson = JSON.stringify(media_paths);
+    }
+
     const [result]: any = await db.query(
       `INSERT INTO itineraries
        (user_id, destination, start_date, end_date, budget, activities, notes, media_paths)
@@ -41,7 +46,7 @@ export const createItinerary = async (req: Request, res: Response) => {
         budget ?? null,
         activitiesJson,
         notes ?? null,
-        media_paths ?? null
+        mediaPathsJson ?? null
       ]
     );
 
@@ -146,6 +151,11 @@ export const updateItinerary = async (req: Request, res: Response) => {
     activitiesJson = JSON.stringify(activities);
   }
 
+  let mediaPathsJson = null;
+  if (Array.isArray(media_paths)) {
+    mediaPathsJson = JSON.stringify(media_paths);
+  }
+
   const [result]: any = await db.query(
     `UPDATE itineraries SET
       destination = COALESCE(?, destination),
@@ -163,7 +173,7 @@ export const updateItinerary = async (req: Request, res: Response) => {
       budget ?? null,
       activitiesJson,
       notes ?? null,
-      media_paths ?? null,
+      mediaPathsJson ?? null,
       id
     ]
   );
@@ -174,6 +184,9 @@ export const updateItinerary = async (req: Request, res: Response) => {
 
   return res.status(200).json({ message: "Itinerary updated successfully" });
 };
+
+
+
 
 /**
  * DELETE ITINERARY
